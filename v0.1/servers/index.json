@@ -16,6 +16,15 @@
             "url": "https://mcp.vercel.com"
           }
         ]
+      },
+      "_meta": {
+        "io.modelcontextprotocol.registry/official": {
+          "status": "active",
+          "statusChangedAt": "2026-01-14T18:38:33.404454Z",
+          "publishedAt": "2026-01-14T18:38:33.404454Z",
+          "updatedAt": "2026-01-14T18:38:33.404454Z",
+          "isLatest": true
+        }
       }
     }
   ],
