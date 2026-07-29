@@ -1,0 +1,12 @@
+{
+	"$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+	"name": "vercel",
+	"description": "An MCP server for Vercel",
+	"version": "0.0.3",
+	"remotes": [
+		{
+			"type": "streamable-http",
+			"url": "https://mcp.vercel.com"
+		}
+	]
+}
