@@ -1,10 +1,12 @@
-const fs = require("node:fs");
-const path = require("node:path");
+import * as fs from "node:fs";
+import * as path from "node:path";
+import * as readline from "node:readline";
 
+const out = process.argv[2] || "www";
 const now = new Date().toJSON();
 const servers = [];
 
-for (const file of process.argv.slice(2)) {
+for await (const file of readline.createInterface({input: process.stdin})) {
 	const _server = JSON.parse(fs.readFileSync(file));
 	const server_json_content = {
 		server: _server,
@@ -19,7 +21,7 @@ for (const file of process.argv.slice(2)) {
 		},
 	};
 
-	const server_json = path.join("www", "v0.1", "servers", _server.name, "versions", _server.version, "server.json");
+	const server_json = path.join(out, "v0.1", "servers", _server.name, "versions", _server.version, "server.json");
 	console.log(`Writing ${server_json}... based on ${file}`);
 	fs.mkdirSync(path.dirname(server_json), { recursive: true });
 	fs.writeFileSync(server_json, JSON.stringify(server_json_content, null, 2), "utf8");
@@ -30,7 +32,7 @@ const index_json_content = {
 	metadata: { count: servers.length },
 	servers: servers,
 };
-const index_json = path.join("www", "v0.1", "servers", "index.json");
+const index_json = path.join(out, "v0.1", "servers", "index.json");
 
 console.log(`Writing ${index_json}...`);
 fs.mkdirSync(path.dirname(index_json), { recursive: true });

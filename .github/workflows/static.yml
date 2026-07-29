@@ -19,10 +19,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Create Pages
+      - name: Create pages under www
         run: |
-          node  << 'EOF'
-          EOF
+          mkdir -p www
+          find mcp -type f | node index.mjs www
+          echo ${{ github.sha }} > www/index.html
+          find www -type f
       - uses: actions/upload-pages-artifact@v3
         with:
           path: 'www'
